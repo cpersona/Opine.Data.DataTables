@@ -9,6 +9,12 @@ namespace Opine.Data.DataTables
         private object[] values;
         private Dictionary<string, int> columnIndices;
 
+        public DataTable(object[] values, Dictionary<string, int> columnIndices)
+        {
+            this.values = values;
+            this.columnIndices = columnIndices;
+        }
+
         public object[] Values { get => values; }
 
         public virtual int GetColumnIndex(string columnName)
@@ -26,6 +32,21 @@ namespace Opine.Data.DataTables
             return values[(rowIndex * columnIndices.Keys.Count) + columnIndex];
         }
 
+        public virtual IGroupedDataTable GroupBy(string[] columnNames)  
+        {
+            return DataTableHelper.Group(this, columnNames);
+        }
+
+        public virtual IDataTable FilterBy(IRowFilter[] filters, bool matchAll)
+        {
+            return DataTableHelper.Filter(this, filters, matchAll);
+        }
+
+        public IDataRow GetRow(int rowIndex)
+        {
+            return new DataRow(this, rowIndex);
+        }
+
         public virtual IEnumerator<IDataRow> GetEnumerator()
         {
             var colCount = GetColumnCount();
@@ -38,21 +59,6 @@ namespace Opine.Data.DataTables
         IEnumerator IEnumerable.GetEnumerator()
         {
             return this.GetEnumerator();
-        }
-
-        public IGroupedDataTable GroupBy(string[] columnNames)  
-        {
-            return DataTableHelper.Group(this, columnNames);
-        }
-
-        public IDataTable FilterBy(IRowFilter[] filters, bool matchAll)
-        {
-            return DataTableHelper.Filter(this, filters, matchAll);
-        }
-
-        public IDataRow GetRow(int rowIndex)
-        {
-            return new DataRow(this, rowIndex);
         }
     }
 }
