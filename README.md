@@ -1,5 +1,5 @@
 # Opine
-Opine CQRS and Event Sourcing framework for C# and .NET Core
+Lightweight C# DataTable alternative providing filtering and grouping.
 
 ## Getting started
 
