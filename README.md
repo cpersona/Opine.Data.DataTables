@@ -47,15 +47,15 @@ Serialization of a DataTable is simple given the internal structure of the defau
 
 Yes! This project is under the Opine project, but does not have code dependencies on Opine. Therefore, you can use this project anywhere with a simple reference. 
 
-# Technologies
+## Technologies
 * .NET Core 2.0
 * C# 7
 
-# Optional Technologies
+## Optional Technologies
 * N/A
 
-# Third-party Libraries
+## Third-party Libraries
 * N/A
 
-# References
+## References
 * N/A
