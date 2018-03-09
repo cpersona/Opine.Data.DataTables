@@ -1,5 +1,5 @@
 # Opine
-Opine CQRS and Event Sourcing framework for C# and .NET Core
+Lightweight C# DataTable alternative providing filtering and grouping.
 
 ## Getting started
 
@@ -43,15 +43,19 @@ Grouping is done by providing a list of column names to group by. The result is 
 
 Serialization of a DataTable is simple given the internal structure of the default DataTable which consists of an object array and limited column metadata. 
 
-# Technologies
+## Is it standalone?
+
+Yes! This project is under the Opine project, but does not have code dependencies on Opine. Therefore, you can use this project anywhere with a simple reference. 
+
+## Technologies
 * .NET Core 2.0
 * C# 7
 
-# Optional Technologies
+## Optional Technologies
 * N/A
 
-# Third-party Libraries
+## Third-party Libraries
 * N/A
 
-# References
+## References
 * N/A
