@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Opine.Data.DataTables
 {
@@ -9,10 +10,12 @@ namespace Opine.Data.DataTables
         private object[] values;
         private Dictionary<string, int> columnIndices;
 
-        public DataTable(object[] values, Dictionary<string, int> columnIndices)
+        public DataTable(string[] columnNames, object[] values)
         {
             this.values = values;
-            this.columnIndices = columnIndices;
+            this.columnIndices = columnNames
+                .Select((x, i) => new { x, i })
+                .ToDictionary(x => x.x, x => x.i);
         }
 
         public object[] Values { get => values; }
@@ -29,7 +32,7 @@ namespace Opine.Data.DataTables
 
         public virtual object GetValue(int rowIndex, int columnIndex)
         {
-            return values[(rowIndex * columnIndices.Keys.Count) + columnIndex];
+            return values[(rowIndex * columnIndices.Keys.Count) + columnIndex - 1];
         }
 
         public virtual IGroupedDataTable GroupBy(string[] columnNames)  
