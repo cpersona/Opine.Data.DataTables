@@ -12,7 +12,7 @@ namespace Opine.Data.DataTables.Tests
             t.Setup(x => x.GetColumnIndex("Name")).Returns(2);
             t.Setup(x => x.GetColumnCount()).Returns(3);
             t.Setup(x => x.GetValue(3, 2)).Returns("test");
-            t.Setup(x => x.GetRow(0)).Returns(new DataRow(t.Object, 3));
+            t.Setup(x => x.GetRow(3)).Returns(new DataRow(t.Object, 3));
             return t.Object;
         }
 
@@ -47,7 +47,8 @@ namespace Opine.Data.DataTables.Tests
         public void GetRow()
         {
             var t = GetTable();
-            Assert.AreEqual(0, t.GetRow(0).GetRowIndex());
+            var r = t.GetRow(0);
+            Assert.AreEqual(0, r.GetRowIndex());
         }
     }
 }
