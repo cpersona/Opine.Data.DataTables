@@ -5,6 +5,8 @@ namespace Opine.Data.DataTables
         private IDataTable table;
         private int rowIndex;
 
+        protected DataRow() { }
+
         public DataRow(IDataTable table, int rowIndex)
         {
             this.table = table;

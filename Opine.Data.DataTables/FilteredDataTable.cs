@@ -8,6 +8,8 @@ namespace Opine.Data.DataTables
         private IDataTable parentDataTable;
         private int[] rowIndices;
 
+        protected FilteredDataTable() { }
+
         public FilteredDataTable(IDataTable parentDataTable, int[] rowIndices)
         {
             this.parentDataTable = parentDataTable;

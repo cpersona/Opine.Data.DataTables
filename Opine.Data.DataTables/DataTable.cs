@@ -10,6 +10,8 @@ namespace Opine.Data.DataTables
         private object[] values;
         private Dictionary<string, int> columnIndices;
 
+        protected DataTable() { }
+
         public DataTable(string[] columnNames, object[] values)
         {
             this.values = values;

@@ -11,6 +11,8 @@ namespace Opine.Data.DataTables
         private string[] groupingFields;
         private Dictionary<string, int> groupingFieldIndices;
 
+        protected GroupedDataTable() { }
+
         public GroupedDataTable(IDataTable parentDataTable, int[][] rowIndices, string[] groupingFields)
         {
             this.parentDataTable = parentDataTable;
