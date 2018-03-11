@@ -32,7 +32,8 @@ namespace Opine.Data.DataTables
 
         public virtual object GetValue(int rowIndex, int columnIndex)
         {
-            return values[(rowIndex * columnIndices.Keys.Count) + columnIndex - 1];
+            var i = (rowIndex * columnIndices.Keys.Count) + columnIndex;
+            return values[i];
         }
 
         public virtual IGroupedDataTable GroupBy(string[] columnNames)  
@@ -55,7 +56,7 @@ namespace Opine.Data.DataTables
             var colCount = GetColumnCount();
             for (int i = 0; i < values.Length; i += colCount)
             {
-                yield return new DataRow(this, i);
+                yield return new DataRow(this, i / colCount);
             }
         }
 

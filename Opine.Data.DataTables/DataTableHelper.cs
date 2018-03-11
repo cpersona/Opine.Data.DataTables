@@ -38,27 +38,40 @@ namespace Opine.Data.DataTables
             int i = 0;
             foreach (var r in parentDataTable)
             {
-                foreach (var f in filters)
+                if (FilterInternal(filters, matchAll, indices, i, r))
                 {
-                    if (f.IsMatch(r))
-                    {
-                        if (!matchAll)
-                        {
-                            indices.Add(i);
-                            break;
-                        }
-                    }
-                    else
-                    {
-                        if (matchAll)
-                        {
-                            break;
-                        }
-                    }
+                    indices.Add(i);
                 }
                 i++;
             }
             return new FilteredDataTable(parentDataTable, indices.ToArray());
+        }
+
+        private static bool FilterInternal(IRowFilter[] filters, bool matchAll, List<int> indices, int i, IDataRow r)
+        {
+            var match = true;
+            foreach (var f in filters)
+            {
+                if (f.IsMatch(r))
+                {
+                    if (!matchAll)
+                    {
+                        return true;
+                    }
+                }
+                else
+                {
+                    if (matchAll)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        match = false;
+                    }
+                }
+            }
+            return true;
         }
     }
 }

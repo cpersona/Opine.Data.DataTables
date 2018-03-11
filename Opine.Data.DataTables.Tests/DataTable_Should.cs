@@ -48,7 +48,7 @@ namespace Opine.Data.DataTables.Tests
         public void GetValueByIndex()
         {
             var table = GetDataTable();
-            Assert.AreEqual(43, table.GetValue(2, 2));
+            Assert.AreEqual(43, table.GetValue(2, 1));
         }
 
         [TestMethod]
