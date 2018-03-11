@@ -41,7 +41,7 @@ namespace Opine.Data.DataTables.Tests
         {
             {
                 var filter = new Mock<IRowFilter>();
-                filter.Setup(x => x.IsMatch(It.Is<IDataRow>(y => y.GetValue("State") == "CA"))).Returns(true);
+                filter.Setup(x => x.IsMatch(It.Is<IDataRow>(y => y.GetValue("State").ToString() == "CA"))).Returns(true);
                 var t = GetTable();
                 var f = DataTableHelper.Filter(t, new[] { filter.Object }, true);
                 Assert.AreEqual(3, f.Count());
@@ -57,7 +57,7 @@ namespace Opine.Data.DataTables.Tests
 
             {
                 var filter = new Mock<IRowFilter>();
-                filter.Setup(x => x.IsMatch(It.Is<IDataRow>(y => y.GetValue("State") == "AZ"))).Returns(true);
+                filter.Setup(x => x.IsMatch(It.Is<IDataRow>(y => y.GetValue("State").ToString() == "AZ"))).Returns(true);
                 var t = GetTable();
                 var f = DataTableHelper.Filter(t, new[] { filter.Object }, true);
                 Assert.AreEqual(0, f.Count());

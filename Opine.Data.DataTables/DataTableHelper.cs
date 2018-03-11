@@ -71,7 +71,7 @@ namespace Opine.Data.DataTables
                     }
                 }
             }
-            return true;
+            return match;
         }
     }
 }
