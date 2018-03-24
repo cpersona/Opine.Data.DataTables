@@ -72,5 +72,17 @@ namespace Opine.Data.DataTables.Tests
             }
             Assert.AreEqual(3, i);
         }
+
+        [TestMethod]
+        public void Enumerate()
+        {
+            var table = GetDataTable();
+            int i = 0;
+            foreach (var r in table)
+            {
+                i++;
+            }
+            Assert.AreEqual(3, i);
+        }
     }
 }
