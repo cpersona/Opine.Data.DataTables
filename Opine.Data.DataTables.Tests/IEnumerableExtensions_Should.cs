@@ -22,7 +22,7 @@ namespace Opine.Data.DataTables.Tests
         }
         
         [TestMethod]
-        public void ToTable()
+        public void ToDataTable()
         {
             var rows = GetDataTable().Where(x => (int)x.GetValue("Age") > 40);
             var table = rows.ToDataTable();
