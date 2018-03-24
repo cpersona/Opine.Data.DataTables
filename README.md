@@ -50,7 +50,9 @@ The default implementation of `IDataTable` is `DataTable` which contains a singl
   int i = 0;
   foreach (var r in table)
   {
+      // All equivalent to "r"
       var sameRow = table.GetRow(i);
+      var alsoSameRow = table.GetRow(r.GetRowIndex());
       i++;
   }
 ```
@@ -72,7 +74,7 @@ var table = rows.ToDataTable();
 
 ### Grouping
 
-Grouping is done by providing a list of column names to group by. The result is an `IGroupedDataTable` which functionality for accessing the rows within a specific group. Data within a grouped table is provided as instances of `IGroupedDataRow` which similarly provides access to the grouped rows. As with filtered tables, grouped tables contain row indices and a pointer back to their source table. 
+Grouping is done by providing a list of column names to group by. The result is an `IGroupedDataTable` which provides functionality for accessing the rows within a specific group. Data within a grouped table is provided as instances of `IGroupedDataRow` which similarly provides access to the grouped rows. As with filtered tables, grouped tables contain row indices and a pointer back to their source table. 
 
 ```csharp
 var groupedTable = GetDataTable().GroupBy(new[] { "Age" });
