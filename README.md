@@ -27,13 +27,41 @@ At the core of DataTables is the `IDataTable` interface which is primarily an en
 
 The default implementation of `IDataTable` is `DataTable` which contains a single object array of all the values it contains and column information. 
 
+```csharp
+  var columns = new string[] 
+  {
+      "Name", "Age"
+  };
+  var values = new object[] 
+  { 
+      "Bob", 55,
+      "Tom", 32,
+      "Jim", 43
+  };
+  var table = new DataTable(columns, values);
+```
+
 ### Data access
 
 `IDataTable` provides an enumeration of the rows contained within as well as random access to rows or to individual data cells within the data. 
 
+```csharp
+  var table = GetDataTable();
+  int i = 0;
+  foreach (var r in table)
+  {
+      var sameRow = table.GetRow(i);
+      i++;
+  }
+```
+
 ### Filtering
 
 Filtering is done by providing a list of `IRowFilter` instances. Standard comparison filters are provided and custom filters can be created. Of course, LINQ can be used to perform filtering operations if needed. Filtered tables simply contain row indices and a pointer back to their source table making them very lightweight. 
+
+```csharp
+var filteredTable = GetDataTable().FilterBy(new IRowFilter[] { new MyCustomFilter(42) }, true);
+```
 
 A `ToDataTable` extension method has been added to `IEnumerable<IDataRow>` to make working with LINQ collections easier. See the example below or unit tests for a full example. 
 
@@ -45,6 +73,10 @@ var table = rows.ToDataTable();
 ### Grouping
 
 Grouping is done by providing a list of column names to group by. The result is an `IGroupedDataTable` which functionality for accessing the rows within a specific group. Data within a grouped table is provided as instances of `IGroupedDataRow` which similarly provides access to the grouped rows. As with filtered tables, grouped tables contain row indices and a pointer back to their source table. 
+
+```csharp
+var groupedTable = GetDataTable().GroupBy(new[] { "Age" });
+```
 
 ### Serialization
 
