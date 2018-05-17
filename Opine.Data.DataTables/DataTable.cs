@@ -17,7 +17,7 @@ namespace Opine.Data.DataTables
             this.values = values;
             this.columnIndices = columnNames
                 .Select((x, i) => new { x, i })
-                .ToDictionary(x => x.x, x => x.i);
+                .ToDictionary(x => x.x, x => x.i, StringComparer.CurrentCultureIgnoreCase);
         }
 
         public object[] Values { get => values; }

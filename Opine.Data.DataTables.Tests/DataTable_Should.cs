@@ -38,6 +38,14 @@ namespace Opine.Data.DataTables.Tests
         }
 
         [TestMethod]
+        public void GetColumnIndexCaseInsensitive()
+        {
+            var table = GetDataTable();
+            Assert.AreEqual(0, table.GetColumnIndex("NAME"));
+            Assert.AreEqual(1, table.GetColumnIndex("age"));
+        }
+
+        [TestMethod]
         public void GetColumnCount()
         {
             var table = GetDataTable();
